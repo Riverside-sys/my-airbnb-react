@@ -1,45 +1,85 @@
-# 爱彼迎项目重点笔记
+# my-airbnb-react
 
-## SVG图片处理
+## 项目简介
 
-这里我们把SVG设计成一个React组件(.jsx文件)，而不是像图片那样使用src引入，以下是这样做的原因：
+本项目是一个基于 React 实现的 Airbnb 风格民宿预订平台前端应用，包含首页、房源列表页、房源详情页等主要页面，支持房源筛选、分页、主题切换等功能，适合前端学习和实战练习。
 
-<img src="C:\Users\WangSuwei\AppData\Roaming\Typora\typora-user-images\image-20250826164634646.png" alt="image-20250826164634646" style="zoom: 67%;" />
+## 技术栈
 
-### 对比 img 引入 SVG 的劣势
+- **React 19**：核心 UI 框架
+- **React Router v7**：前端路由管理
+- **Ant Design 5 / MUI**：UI 组件库
+- **styled-components**：CSS-in-JS 方案
+- **Zustand**：轻量级状态管理
+- **Axios**：网络请求
+- **Vite**：前端构建与开发服务器
+- **ESLint**：代码规范与检查
+- **normalize.css**：样式重置
 
-- img 只能简单显示 SVG，无法直接控制内部样式、颜色、部分元素的显示与否，也无法绑定 React 事件。
+## 主要功能
 
-- img 方式不支持 SVG 的动态渲染和交互。
+- 首页房源推荐、热门房源、折扣房源、向往房源等模块展示
+- 房源列表页支持筛选、分页
+- 房源详情页展示图片与详细信息
+- 响应式布局，适配不同屏幕
+- 主题样式统一管理
 
-### SVG写成组件的优势
+## 目录结构简述
 
-#### 可控性更强
+```
+src/
+  assets/        // 静态资源（图片、样式、主题等）
+  components/    // 通用组件（头部、底部等）
+  views/         // 页面级组件（home, entire, detail等）
+  store/         // 状态管理（Zustand）
+  services/      // 网络请求与接口
+  router/        // 路由配置
+  utils/         // 工具函数
+```
 
-- 样式可控：通过 React 组件，可以直接用 style、className、props 等方式动态控制 SVG 的样式、颜色、大小等属性。
+## 快速开始
 
-#### 代码复用与组合
+1. **安装依赖**
 
-- 可复用：SVG 组件可以像普通 React 组件一样复用，甚至可以组合、嵌套其他组件。
+   ```bash
+   pnpm install
+   # 或
+   npm install
+   # 或
+   yarn install
+   ```
 
-- 参数化：可以通过 props 传递参数，比如颜色、尺寸、动画开关等，灵活性远高于 img。
+2. **本地开发启动**
 
-#### 性能与优化
+   ```bash
+   pnpm dev
+   # 或
+   npm run dev
+   # 或
+   yarn dev
+   ```
 
-- 无需额外请求：SVG 代码直接嵌入页面，不需要像图片那样发起额外的 HTTP 请求，减少了网络开销。
+3. **打包构建**
 
-- 可被 Tree Shaking：未被用到的 SVG 组件不会被打包进最终产物，减小包体积。
+   ```bash
+   pnpm build
+   # 或
+   npm run build
+   # 或
+   yarn build
+   ```
 
-#### 交互性
+4. **预览构建结果**
 
-- 可添加事件：SVG 组件可以直接绑定 onClick、onMouseEnter 等事件，方便实现交互效果。
+   ```bash
+   pnpm preview
+   # 或
+   npm run preview
+   # 或
+   yarn preview
+   ```
 
-- 可与 React 状态联动：SVG 的某些部分可以根据 React 的 state 动态渲染，比如进度条、动画等。
+## 其他说明
 
-#### 代码一致性与可维护性
-
-- 统一管理：所有图标都可以用组件的方式统一管理，便于维护和批量修改。
-
-- 类型检查：配合 TypeScript，可以对 SVG 组件的 props 做类型检查，减少出错。
-
-> 不过这里我们需要注意一点：react组件的style属性需要写成对象，而svg下载下来是字符串形式；因此我们需要使用网上找到的函数将style字符串转换为对象(utils/styleStrToObject.js)。
+- 本项目仅为前端部分，接口数据可根据实际需求进行对接或 mock。
+- 欢迎学习交流，欢迎 star！
