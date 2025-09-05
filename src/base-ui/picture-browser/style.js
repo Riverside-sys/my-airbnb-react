@@ -114,6 +114,8 @@ export const PictureBrowserWrapper = styled.div`
       .list {
         margin-top: 3px;
         overflow: hidden;
+        transition: transform 300ms ease;
+        height: ${props => props.$showList ? '67px' : '0'};
 
         .item {
           margin-right: 15px;
