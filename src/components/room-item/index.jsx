@@ -19,7 +19,9 @@ const RoomItem = memo(props => {
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   // 点击切换事件
-  const controlClickHandle = isRight => {
+  const controlClickHandle = (isRight, e) => {
+    // 阻止事件冒泡
+    e.stopPropagation()
     // 切换上一个面板/下一个面板
     isRight ? carouselRef.current.next() : carouselRef.current.prev()
 
@@ -46,10 +48,10 @@ const RoomItem = memo(props => {
     return (
       <div className="swiper">
         <div className="control">
-          <div className="btn left" onClick={e => controlClickHandle(false)}>
+          <div className="btn left" onClick={e => controlClickHandle(false, e)}>
             <IconArrowLeft width={30} height={30} color='#fff' />
           </div>
-          <div className="btn right" onClick={e => controlClickHandle(true)}>
+          <div className="btn right" onClick={e => controlClickHandle(true, e)}>
             <IconArrowRight width={30} height={30} color='#fff' />
           </div>
         </div>
