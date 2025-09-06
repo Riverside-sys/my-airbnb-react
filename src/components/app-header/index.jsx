@@ -1,5 +1,6 @@
 import React, { memo, useState, useRef } from 'react'
 import classNames from 'classnames'
+import { ThemeProvider } from 'styled-components'
 
 import { AppHeaderWrapper, SearchAreaWrapper } from './style'
 import AppHeaderLeft from './c-cpns/header-left'
@@ -14,7 +15,7 @@ const AppHeader = memo(() => {
 
   // 从store中获取头部配置信息
   const headerConfig = useConfigStore.use.headerConfig()
-  const { isFixed } = headerConfig
+  const { isFixed, topAlpha } = headerConfig
 
   // 监听页面滚动
   const { scrollY } = useScrollPosition()
@@ -23,18 +24,23 @@ const AppHeader = memo(() => {
   if (!isSearch) prevScrollYRef.current = scrollY
   if (isSearch && Math.abs(scrollY - prevScrollYRef.current) > 50) setIsSearch(false)
 
+  // 透明度逻辑
+  const isAlpha = topAlpha && scrollY === 0
+
   return (
-    <AppHeaderWrapper className={classNames({ 'fixed': isFixed })}>
-      <div className="content">
-        <div className="top">
-          <AppHeaderLeft />
-          <AppHeaderCenter isSearch={isSearch} searchBarClick={e => setIsSearch(true)} />
-          <AppHeaderRight />
+    <ThemeProvider theme={{ isAlpha }}>
+      <AppHeaderWrapper className={classNames({ 'fixed': isFixed })}>
+        <div className="content">
+          <div className="top">
+            <AppHeaderLeft />
+            <AppHeaderCenter isSearch={isAlpha || isSearch} searchBarClick={e => setIsSearch(true)} />
+            <AppHeaderRight />
+          </div>
+          <SearchAreaWrapper $isSearch={isSearch} />
         </div>
-        <SearchAreaWrapper $isSearch={isSearch} />
-      </div>
-      {isSearch && <div className="cover" onClick={e => setIsSearch(false)}></div>}
-    </AppHeaderWrapper>
+        {isSearch && <div className="cover" onClick={e => setIsSearch(false)}></div>}
+      </AppHeaderWrapper>
+    </ThemeProvider>
   )
 })
 

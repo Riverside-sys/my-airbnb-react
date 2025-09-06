@@ -35,8 +35,8 @@ const Home = memo(() => {
   useEffect(() => {
     useConfigStore.setState({
       headerConfig: {
-        ...useConfigStore.getState().headerConfig,
         isFixed: true,
+        topAlpha: true,
       }
     })
   }, [])

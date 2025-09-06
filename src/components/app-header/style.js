@@ -1,8 +1,6 @@
 import styled from "styled-components"
 
 export const AppHeaderWrapper = styled.div`
-  border-bottom: 1px solid #eee;
-
   &.fixed {
     position: fixed;
     z-index: 99;
@@ -14,7 +12,10 @@ export const AppHeaderWrapper = styled.div`
   .content {
     position: relative;
     z-index: 19;
-    background-color: #fff;
+    transition: all 250ms ease;
+    background-color: ${props => props.theme.isAlpha ? 'transparent' : '#fff'};
+    border-bottom: 1px solid #eee;
+    border-bottom-color: ${props => props.theme.isAlpha ? "rgba(233,233,233,0)" : "rgba(233,233,233,1)"};
 
     .top {
       display: flex;

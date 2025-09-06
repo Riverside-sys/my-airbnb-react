@@ -12,6 +12,7 @@ export const AppHeaderRightWrapper = styled.div`
   .btns {
     display: flex;
     box-sizing: content-box;
+    color: ${props => props.theme.isAlpha ? "#fff" : props.theme.text.primaryColor};
 
     .btn {
       height: 18px;
@@ -22,7 +23,7 @@ export const AppHeaderRightWrapper = styled.div`
       box-sizing: content-box;
 
       &:hover {
-        background-color: #f5f5f5;
+        background-color: ${props => props.theme.isAlpha ? "rgba(255,255,255,.3)" : "#f5f5f5"};
       }
     }
   }

@@ -10,8 +10,8 @@ const Detail = memo(() => {
   useEffect(() => {
     useConfigStore.setState({
       headerConfig: {
-        ...useConfigStore.getState().headerConfig,
         isFixed: false,
+        topAlpha: false,
       }
     })
   }, [])

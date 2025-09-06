@@ -17,8 +17,8 @@ const Entire = memo(() => {
   useEffect(() => {
     useConfigStore.setState({
       headerConfig: {
-        ...useConfigStore.getState().headerConfig,
         isFixed: true,
+        topAlpha: false,
       }
     })
   }, [])

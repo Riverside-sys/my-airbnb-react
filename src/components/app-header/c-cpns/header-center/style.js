@@ -24,7 +24,7 @@ export const AppHeaderCenterWrapper = styled.div`
 
     .text {
       padding: 0 16px;
-      color: #222;
+      color: ${props => props.theme.isAlpha ? "#fff" : "#222"};
       font-weight: 600;
     }
 

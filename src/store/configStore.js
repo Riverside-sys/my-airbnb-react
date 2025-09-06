@@ -9,6 +9,7 @@ const initialState = {
   // 头部相关配置
   headerConfig: {
     isFixed: false,       // 是否固定定位
+    topAlpha: false,       // 是否透明
   }
 }
 
