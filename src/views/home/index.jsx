@@ -17,7 +17,7 @@ import HomeSectionV2 from './c-cpns/home-section-v2'
 import HomeSectionV3 from './c-cpns/home-section-v3'
 import HomeLongFor from './c-cpns/home-longfor'
 import { isEmptyObject } from '@/utils/isEmptyObject'
-
+import { useConfigStore } from '@/store/configStore'
 
 const Home = memo(() => {
 
@@ -29,6 +29,16 @@ const Home = memo(() => {
     fetchHomeHotRecommendData()
     fetchHomeLongForDataAction()
     fetchHomePlusDataAction()
+  }, [])
+
+  // 设置头部配置信息
+  useEffect(() => {
+    useConfigStore.setState({
+      headerConfig: {
+        ...useConfigStore.getState().headerConfig,
+        isFixed: true,
+      }
+    })
   }, [])
 
 
